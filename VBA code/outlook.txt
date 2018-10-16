@@ -1,0 +1,34 @@
+// code used to open outlook on despktop and attach invoice for parents
+Private Sub CommandButton2_Click()
+ a = "C:\Users\name\Desktop\test-save.pdf"
+Dim b As String
+b = Worksheets("TeacherPay").Cells(1, 19) & Worksheets("TeacherPay").Cells(1, 20) & ".pdf"
+MsgBox (b)
+
+
+
+ChDir "C:\Users\hamid\Desktop\SYSTEM\Admin\TeacherPay"
+ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, Filename:= _
+b, OpenAfterPublish:=True
+
+Dim OutLookApp As Object
+Dim OutLookMailItem As Object
+Dim myAttachments As Object
+
+Set OutLookApp = CreateObject("Outlook.application")
+Set OutLookMailItem = OutLookApp.CreateItem(0)
+Set myAttachments = OutLookMailItem.Attachments
+
+With OutLookMailItem
+.To = Worksheets("TeacherPay").Cells(2, 19)
+.Subject = "Data"
+.Body = "this is your invoice"
+myAttachments.Add b
+'.send
+.Display
+End With
+
+Set OutLookMailItem = Nothing
+Set OutLookApp = Nothing
+    
+End Sub
