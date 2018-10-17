@@ -1,0 +1,13 @@
+Sub Save_Click()
+
+a = "C:\Users\user\Desktop\test-save.pdf"
+Dim b As String
+b = "name.pdf" // name of the file you want to save
+'MsgBox (b) // box appears to confirm name to user
+
+
+
+ChDir "C:\Users\user\Desktop\SYSTEM\Admin\Invoices" // location you want to save the file to
+ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, Filename:= _
+b, OpenAfterPublish:=False
+End Sub

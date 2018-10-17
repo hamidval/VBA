@@ -1,0 +1,8 @@
+Private Sub CommandButton1_Click()
+
+Range("A26:Q200") = ""
+
+
+
+
+End Sub
