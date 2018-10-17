@@ -1,0 +1,14 @@
+Private Sub GenerateAll_Click()
+Dim current As String
+Dim lrow As Long
+
+lrow = Worksheets("Lists").Cells(Rows.Count, 5).End(xlUp).Row // last row of a list of people you want to generate an invoice for
+
+For i = 2 To lrow
+current = Worksheets("Lists").Cells(i, 5) // finds top name on the list
+
+Worksheets("Data from teachers").Cells(1, 19) = current //enters name on top of list into cell to generate invoice
+Generate_Click // calls the button to generate the invoice
+Next
+
+End Sub

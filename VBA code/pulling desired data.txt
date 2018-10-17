@@ -1,0 +1,38 @@
+
+/* code used in database system for handling lessons at a tuition centre
+ specific rows are pulled from a large set of data and used to generate an invoice
+ 
+*/
+
+Dim lastRow As Integer // last row of the large data set
+
+lastRow = Worksheets("Data from teachers").Cells(Rows.Count, 1).End(xlUp).Row
+Worksheets("Invoice").Range("A26:Q500") = "" // clears the current data on the invoice sheet
+Dim location As String
+For i = 2 To a
+
+    If Worksheets("Data from teachers").Cells(i, 4) = Worksheets("Data from teachers").Cells(1, 19) Then // col 4 conatins teacher name
+    If Worksheets("Data from teachers").Cells(i, 17) = Worksheets("Data from teachers").Cells(1, 21) Then // col 17 contains the month the lesson was taken
+
+// if statements are satisfied when there is a row containing the desired teachers name and the month you want to generate the invoice for
+
+        Worksheets("Data from teachers").Rows(i).Copy // copies the row
+
+        Worksheets("Invoice").Activate // opens the invoice template sheet
+
+        b = Worksheets("Invoice").Cells(Rows.Count, 1).End(xlUp).Row // finds the next empty row
+
+        Worksheets("Invoice").Cells(b + 1, 1).Select // selects the next empty row
+
+        ActiveSheet.Paste // pastes the row
+
+        Worksheets("Data from teachers").Activate // takes you back to the large collection of data
+
+    End If
+    End If
+    
+
+
+Next
+
+Application.CutCopyMode = False
